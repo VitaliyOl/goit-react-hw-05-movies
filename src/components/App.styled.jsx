@@ -1,7 +1,9 @@
-// import styled from '@emotion/styled';
+import styled from '@emotion/styled';
 
-// export const NavHeader = styled.nav`
-//   display: flex;
-//   justify-content: flex-start;
-//   column-gap: 30px;
-// `;
+export const Container = styled.div`
+  max-width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+`;

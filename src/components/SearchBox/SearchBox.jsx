@@ -17,7 +17,7 @@ export const SearchBox = ({ onSubmit }) => {
     setInputValue('');
   };
   return (
-    <div>
+    <div style={{ marginBottom: '20px' }}>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

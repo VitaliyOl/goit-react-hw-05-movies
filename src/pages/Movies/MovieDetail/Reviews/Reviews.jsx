@@ -20,17 +20,21 @@ const Reviews = () => {
   }, [moviesId]);
 
   return (
-    <div>
-      <ul>
-        {review.map(el => {
-          return (
-            <li key={el.id}>
-              <p>{el.author}</p>
-              <p>el.{el.content}</p>
-            </li>
-          );
-        })}
-      </ul>
+    <div style={{ marginTop: '15px' }}>
+      {!review ? (
+        <h4>We don't have any reviews for this movie</h4>
+      ) : (
+        <ul>
+          {review.map(el => {
+            return (
+              <li key={el.id}>
+                <h4 style={{ marginBottom: '15px' }}>Author: {el.author}</h4>
+                <p style={{ marginBottom: '15px' }}>{el.content}</p>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 };

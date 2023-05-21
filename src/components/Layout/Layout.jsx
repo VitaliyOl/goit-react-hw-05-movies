@@ -1,15 +1,15 @@
 import { Outlet } from 'react-router-dom';
-import { NavHeader, StyledLink } from './Layout.styled';
+import { NavHeader, StyledLink, Header } from './Layout.styled';
 
 export const Layout = () => {
   return (
     <>
-      <header>
+      <Header>
         <NavHeader>
           <StyledLink to="/">Home</StyledLink>
           <StyledLink to="/movies">Movies</StyledLink>
         </NavHeader>
-      </header>
+      </Header>
 
       <main>
         <Outlet />

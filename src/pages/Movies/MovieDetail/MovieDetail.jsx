@@ -5,6 +5,9 @@ import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useRef } from 'react';
 import { Suspense } from 'react';
+import { FaArrowLeft } from 'react-icons/fa';
+import { Container, Wrapper, Text } from './MovieDetail.styled';
+import { List } from 'components/Layout/Layout.styled';
 
 const MovieDetail = () => {
   const [movieInfo, setMovieInfo] = useState({});
@@ -25,21 +28,61 @@ const MovieDetail = () => {
   }, [moviesId]);
 
   return (
-    <div>
-      <h1>{movieInfo.original_title}</h1>
-      <Link to={backLinkLocationRef.current}>Go back</Link>
-      <ul>
+    <>
+      <Link
+        to={backLinkLocationRef.current}
+        style={{ display: 'inline-flex', alignItems: 'center' }}
+      >
+        <FaArrowLeft style={{ marginRight: '5px' }} />
+        Go back
+      </Link>
+      <Container>
+        <img
+          src={
+            movieInfo.poster_path
+              ? `https://image.tmdb.org/t/p/w300${movieInfo.poster_path}`
+              : 'https://static.npmjs.com/2f55441126e3c8d643c4c2d4e852cb4c.png'
+          }
+          alt={movieInfo.title || movieInfo.original_title}
+          width="300px"
+        ></img>
+
+        <Wrapper>
+          <h2>
+            {movieInfo.title}{' '}
+            {movieInfo.release_date && parseInt(movieInfo.release_date)}{' '}
+          </h2>
+          <Text>
+            User score: {Math.round(movieInfo.vote_average * 10) + '%'}
+          </Text>
+          <h4>Overview</h4>
+          <Text>{movieInfo.overview}</Text>
+          <h4>Genres</h4>
+          <Text>
+            {movieInfo.genres
+              ? movieInfo.genres.map(genre => genre.name).join(' ')
+              : 'No genres'}
+          </Text>
+        </Wrapper>
+      </Container>
+      <h2>Additional information</h2>
+      <List>
         <li>
-          <Link to="cast">Cast</Link>
+          <Link
+            to="cast"
+            style={{ paddingBottom: '15px', display: 'inline-block' }}
+          >
+            Cast
+          </Link>
         </li>
         <li>
           <Link to="reviews">Reviews</Link>
         </li>
-      </ul>
+      </List>
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
-    </div>
+    </>
   );
 };
 

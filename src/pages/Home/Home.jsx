@@ -25,12 +25,26 @@ const Home = () => {
   }, []);
   return (
     <div>
-      <h1>Trending today</h1>
+      <h1
+        style={{
+          marginBottom: '15px',
+        }}
+      >
+        Trending today
+      </h1>
       <ul>
         {movies.map((movie, id) => {
           return (
             <li key={id}>
-              <Link to={`movies/${movie.id}`}>{movie.original_title}</Link>
+              <Link
+                to={`movies/${movie.id}`}
+                style={{
+                  paddingBottom: '5px',
+                  display: 'inline-block',
+                }}
+              >
+                {movie.original_title}
+              </Link>
             </li>
           );
         })}

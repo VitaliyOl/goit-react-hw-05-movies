@@ -6,6 +6,7 @@ import NotFound from 'pages/NotFound/NotFound';
 import { Layout } from './Layout/Layout';
 import { lazy } from 'react';
 import { Suspense } from 'react';
+import { Container } from './App.styled';
 
 const Movies = lazy(() => import('../pages/Movies/Movies'));
 const MovieDetail = lazy(() =>
@@ -18,7 +19,7 @@ const Reviews = lazy(() =>
 
 export const App = () => {
   return (
-    <div>
+    <Container>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -35,6 +36,6 @@ export const App = () => {
           </Route>
         </Routes>
       </Suspense>
-    </div>
+    </Container>
   );
 };

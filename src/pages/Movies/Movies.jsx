@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
+import { Item } from './Movies.styled';
 
 const Movies = () => {
   const [searchMovies, setSearchMovies] = useState([]);
@@ -37,11 +38,11 @@ const Movies = () => {
       <ul>
         {searchMovies.map(movie => {
           return (
-            <li key={movie.id}>
+            <Item key={movie.id}>
               <Link to={`${movie.id}`} state={{ from: location }}>
                 {movie.original_title}
               </Link>
-            </li>
+            </Item>
           );
         })}
       </ul>
