@@ -1,12 +1,16 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useRef } from 'react';
+import { Suspense } from 'react';
 
 const MovieDetail = () => {
   const [movieInfo, setMovieInfo] = useState({});
   const { moviesId } = useParams();
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     async function fetch() {
@@ -23,6 +27,7 @@ const MovieDetail = () => {
   return (
     <div>
       <h1>{movieInfo.original_title}</h1>
+      <Link to={backLinkLocationRef.current}>Go back</Link>
       <ul>
         <li>
           <Link to="cast">Cast</Link>
@@ -31,7 +36,9 @@ const MovieDetail = () => {
           <Link to="reviews">Reviews</Link>
         </li>
       </ul>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
