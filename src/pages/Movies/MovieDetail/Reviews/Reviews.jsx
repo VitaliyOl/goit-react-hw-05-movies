@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import isEmpty from 'lodash.isempty';
 
 const Reviews = () => {
   const [review, setReview] = useState([]);
@@ -21,7 +22,7 @@ const Reviews = () => {
 
   return (
     <div style={{ marginTop: '15px' }}>
-      {!review ? (
+      {isEmpty(review) ? (
         <h4>We don't have any reviews for this movie</h4>
       ) : (
         <ul>
