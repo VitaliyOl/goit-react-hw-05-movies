@@ -13,18 +13,25 @@ const Movies = () => {
   const location = useLocation();
 
   useEffect(() => {
+   
     if (!query) {
       return;
     }
-    async function fetch() {
-      const { data } = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=4e109f7b4b6a0194008b1b4e8c435cc1&query=${query}`
-      );
-
-      setSearchMovies(data.results);
+    
+    try {
+      async function fetch() {
+        const { data } = await axios.get(
+          `https://api.themoviedb.org/3/search/movie?api_key=4e109f7b4b6a0194008b1b4e8c435cc1&query=${query}`
+        );
+  
+        setSearchMovies(data.results);
+      }
+  
+      fetch();
+    } catch (error) {
+      console.log(error);
     }
 
-    fetch();
   }, [query]);
 
   const handleChange = query => {

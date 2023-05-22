@@ -9,15 +9,19 @@ const Reviews = () => {
   const { moviesId } = useParams();
 
   useEffect(() => {
-    async function fetch() {
-      const { data } = await axios.get(
-        `https://api.themoviedb.org/3/movie/${moviesId}/reviews?api_key=4e109f7b4b6a0194008b1b4e8c435cc1`
-      );
+    try {
+      async function fetch() {
+        const { data } = await axios.get(
+          `https://api.themoviedb.org/3/movie/${moviesId}/reviews?api_key=4e109f7b4b6a0194008b1b4e8c435cc1`
+        );
 
-      setReview(data.results);
+        setReview(data.results);
+      }
+
+      fetch();
+    } catch (error) {
+      console.log(error);
     }
-
-    fetch();
   }, [moviesId]);
 
   return (

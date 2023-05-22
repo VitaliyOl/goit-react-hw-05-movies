@@ -7,21 +7,25 @@ const Home = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    async function fetch() {
-      const { data } = await axios.get(
-        'https://api.themoviedb.org/3/trending/movie/day',
-        {
-          params: {
-            api_key: '4e109f7b4b6a0194008b1b4e8c435cc1',
-            language: 'en-US',
-          },
-        }
-      );
+    try {
+      async function fetch() {
+        const { data } = await axios.get(
+          'https://api.themoviedb.org/3/trending/movie/day',
+          {
+            params: {
+              api_key: '4e109f7b4b6a0194008b1b4e8c435cc1',
+              language: 'en-US',
+            },
+          }
+        );
 
-      setMovies(data.results);
+        setMovies(data.results);
+      }
+
+      fetch();
+    } catch (error) {
+      console.log(error);
     }
-
-    fetch();
   }, []);
   return (
     <div>

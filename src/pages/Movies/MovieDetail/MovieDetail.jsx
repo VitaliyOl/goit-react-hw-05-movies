@@ -16,15 +16,20 @@ const MovieDetail = () => {
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
-    async function fetch() {
-      const BASE_URL = 'https://api.themoviedb.org/3/movie/';
-      const KEY = '4e109f7b4b6a0194008b1b4e8c435cc1';
-      const { data } = await axios.get(`${BASE_URL}${moviesId}?api_key=${KEY}`);
-
-      setMovieInfo(data);
+    try {
+      async function fetch() {
+        const BASE_URL = 'https://api.themoviedb.org/3/movie/';
+        const KEY = '4e109f7b4b6a0194008b1b4e8c435cc1';
+        const { data } = await axios.get(`${BASE_URL}${moviesId}?api_key=${KEY}`);
+  
+        setMovieInfo(data);
+      }
+  
+      fetch();
+    } catch (error) {
+      console.log(error);
     }
-
-    fetch();
+   
   }, [moviesId]);
 
   return (
