@@ -9,21 +9,19 @@ const Cast = () => {
   const { moviesId } = useParams();
 
   useEffect(() => {
-
     try {
       async function fetch() {
         const { data } = await axios.get(
           `https://api.themoviedb.org/3/movie/${moviesId}/credits?api_key=4e109f7b4b6a0194008b1b4e8c435cc1`
         );
-  
+
         setCast(data.cast.splice(0, 10));
       }
-  
+
       fetch();
     } catch (error) {
       console.log(error);
     }
-   
   }, [moviesId]);
 
   return (
@@ -40,15 +38,17 @@ const Cast = () => {
                 }
                 alt={el.name}
               ></img>
-              <p
-                style={{
-                  marginTop: '10px',
-                  marginBottom: '10px',
-                }}
-              >
-                {el.name}
-              </p>
-              <em>{el.character}</em>
+              <div>
+                <p
+                  style={{
+                    marginTop: '10px',
+                    marginBottom: '10px',
+                  }}
+                >
+                  {el.name}
+                </p>
+                <em>{el.character}</em>
+              </div>
             </Item>
           );
         })}

@@ -7,5 +7,6 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
+  margin-top: auto;
   flex-basis: calc((100% - 60px) / 5);
 `;
